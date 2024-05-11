@@ -1,0 +1,24 @@
+{
+  "folders": [
+    {
+      "name": "Frontend (React.js)",
+      "path": "frontend"
+    },
+    {
+      "name": "Backend (Node.js)",
+      "path": "backend"
+    },
+    {
+      "name": "IaC (Terraform)",
+      "path": "infrastructure"
+    }
+  ],
+  "extensions": {
+    "recommendations": [
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "yzhang.markdown-all-in-one",
+      "editorconfig.editorconfig"
+    ]
+  }
+}
