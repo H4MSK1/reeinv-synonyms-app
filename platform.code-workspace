@@ -18,7 +18,8 @@
       "dbaeumer.vscode-eslint",
       "esbenp.prettier-vscode",
       "yzhang.markdown-all-in-one",
-      "editorconfig.editorconfig"
+      "editorconfig.editorconfig",
+      "mike-co.import-sorter"
     ]
   }
 }
