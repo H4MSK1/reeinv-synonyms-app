@@ -24,6 +24,8 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
+  "types": ["vitest/globals"],
   "include": ["src"],
+  "exclude": ["src/**/*.{test.ts,spec.ts,test.tsx,spec.tsx}"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
