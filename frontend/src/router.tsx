@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import RootRoute from "./routes/root";
+import Error404Route from "./routes/error-404";
 
 export const router = createBrowserRouter([
   {
@@ -8,6 +9,6 @@ export const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <div>404 - Not found!</div>,
+    element: <Error404Route />,
   },
 ]);
