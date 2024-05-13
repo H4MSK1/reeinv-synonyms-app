@@ -1,9 +1,9 @@
 import AppLayout from "@/components/layouts/app-layout";
 
-export default function RootRoute() {
+export default function Error404Route() {
   return (
     <AppLayout>
-      <div>Root</div>
+      <div>Error 404! Page not found</div>
     </AppLayout>
   );
 }
