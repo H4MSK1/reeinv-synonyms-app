@@ -7,6 +7,7 @@ module.exports = {
     "plugin:react/jsx-runtime",
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended-type-checked",
+    "prettier",
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
   parser: "@typescript-eslint/parser",
