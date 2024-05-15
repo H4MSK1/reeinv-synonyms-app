@@ -9,15 +9,17 @@
     "test": "vitest run",
     "test:cov": "vitest run --coverage",
     "test:dev": "vitest dev",
-    "lint": "eslint . --fix --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "format": "prettier . --write --cache",
+    "lint": "eslint ./src --ext ts,tsx",
+    "lint:fix": "pnpm lint --fix",
+    "format:check": "prettier ./src --check",
+    "format:fix": "prettier ./src --write --cache",
     "preview": "vite preview",
     "prepare": "cd .. && husky frontend/.husky"
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
-      "pnpm run format",
-      "pnpm run lint"
+      "pnpm run format:fix",
+      "pnpm run lint:fix"
     ]
   },
   "dependencies": {
