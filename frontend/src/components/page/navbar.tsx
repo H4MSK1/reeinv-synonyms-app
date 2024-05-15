@@ -5,7 +5,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export default function Navbar() {
   const linkStyling =
-    "sm:transition-colors text-muted-foreground hover:text-foreground aria-[current=page]:text-foreground";
+    "transition-colors text-muted-foreground hover:text-foreground aria-[current=page]:text-foreground";
 
   return (
     <>
