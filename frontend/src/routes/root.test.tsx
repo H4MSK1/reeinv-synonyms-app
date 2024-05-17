@@ -1,3 +1,4 @@
+import "@/components/domain/synonym/card-set/__mocks__";
 import { describe, it } from "vitest";
 import { render } from "@testing-library/react";
 import RootRoute from "./root";

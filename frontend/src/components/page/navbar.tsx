@@ -25,8 +25,8 @@ export default function Navbar() {
           Home
         </NavLink>
 
-        <NavLink to="/synonyms" className={linkStyling}>
-          Synonyms
+        <NavLink to="/browse" className={linkStyling}>
+          Browse
         </NavLink>
       </nav>
 
