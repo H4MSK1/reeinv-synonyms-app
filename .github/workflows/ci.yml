@@ -1,4 +1,4 @@
-name: (frontend) CI, pnpm lint and testing Workflow
+name: (frontend, backend) CI, pnpm lint and testing Workflow
 
 on: [push, pull_request]
 
