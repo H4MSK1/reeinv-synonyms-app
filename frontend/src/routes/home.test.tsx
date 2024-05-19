@@ -1,14 +1,14 @@
 import "@/components/domain/synonym/card-set/__mocks__";
 import { describe, it } from "vitest";
 import { render } from "@testing-library/react";
-import RootRoute from "./root";
+import HomeRoute from "./home";
 import { MemoryRouter } from "react-router-dom";
 
-describe("RootRoute", () => {
+describe("HomeRoute", () => {
   it("should render properly", () => {
     render(
       <MemoryRouter>
-        <RootRoute />
+        <HomeRoute />
       </MemoryRouter>
     );
   });
