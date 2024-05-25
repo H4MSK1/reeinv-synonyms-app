@@ -15,11 +15,11 @@
   ],
   "extensions": {
     "recommendations": [
+      "hashicorp.terraform",
       "dbaeumer.vscode-eslint",
       "esbenp.prettier-vscode",
       "yzhang.markdown-all-in-one",
-      "editorconfig.editorconfig",
-      "mike-co.import-sorter"
+      "editorconfig.editorconfig"
     ]
   }
 }
