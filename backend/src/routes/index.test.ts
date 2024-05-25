@@ -1,8 +1,8 @@
 import { FastifyInstance } from "fastify";
-import createRoutes from "./router";
-import createSynonymsRoutes from "./synonym/synonym";
+import createRoutes from ".";
+import createApiRoutes from "./api";
 
-jest.mock("./synonym/synonym");
+jest.mock("./api");
 
 function mockServer(): jest.Mocked<FastifyInstance> {
   return {
@@ -30,6 +30,6 @@ describe("createRoutes", () => {
     // When
     createRoutes(server);
     // Then
-    expect(createSynonymsRoutes).toHaveBeenCalledWith(server);
+    expect(createApiRoutes).toHaveBeenCalledWith(server);
   });
 });

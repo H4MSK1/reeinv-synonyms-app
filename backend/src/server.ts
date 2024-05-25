@@ -3,7 +3,7 @@ import Fastify, { FastifyInstance } from "fastify";
 import cors from "@fastify/cors";
 import Helmet from "@fastify/helmet";
 import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
-import createRoutes from "@/routes/router";
+import createRoutes from "@/routes";
 import { envLoggerOptions } from "@/config";
 import registerHooks from "./hooks";
 
