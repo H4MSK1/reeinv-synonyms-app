@@ -5,7 +5,18 @@ module.exports = {
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
   ],
+  settings: {
+    "import/resolver": {
+      typescript: true,
+      node: true,
+    },
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"],
+    },
+  },
   ignorePatterns: ["dist", ".eslintrc.cjs"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -28,5 +39,11 @@ module.exports = {
       },
     },
   ],
-  rules: {},
+  rules: {
+    "import/no-unresolved": [2, { commonjs: true, amd: true }],
+    "import/named": 2,
+    "import/namespace": 2,
+    "import/default": 2,
+    "import/export": 2,
+  },
 };
