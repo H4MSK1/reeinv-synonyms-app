@@ -1,7 +1,7 @@
-import { FastifyInstance } from "fastify";
-import createSynonymRoutes from "./synonym";
+import { type FastifyInstance } from "fastify";
 import SynonymService from "@/services/synonym";
 import { SynonymSchema } from "@/schema";
+import createSynonymRoutes from "./synonym";
 
 jest.mock("@/services/synonym");
 

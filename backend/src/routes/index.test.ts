@@ -1,4 +1,4 @@
-import { FastifyInstance } from "fastify";
+import { type FastifyInstance } from "fastify";
 import createRoutes from ".";
 import createApiRoutes from "./api";
 
@@ -26,7 +26,7 @@ describe("createRoutes", () => {
     expect(server.get).toHaveBeenCalledWith("/health", expect.any(Function));
   });
 
-  it("should call createSynonymsRoutes", () => {
+  it("should call createApiRoutes", () => {
     // When
     createRoutes(server);
     // Then

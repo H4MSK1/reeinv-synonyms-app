@@ -1,4 +1,4 @@
-import { envLoggerOptions } from "@/config";
+import { envLoggerOptions } from "./config";
 
 describe("envLoggerOptions", () => {
   it("should have 'dev', 'prod', and 'test' environment logger options", () => {

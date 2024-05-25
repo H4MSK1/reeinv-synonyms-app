@@ -1,4 +1,4 @@
-import { FastifyInstance } from "fastify";
+import { type FastifyInstance } from "fastify";
 import { Synonym, SynonymsFilter } from "@/types";
 import { SynonymSchema } from "@/schema";
 import SynonymService from "@/services/synonym";

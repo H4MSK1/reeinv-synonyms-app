@@ -1,11 +1,10 @@
-import "@/config";
-import Fastify, { FastifyInstance } from "fastify";
+import Fastify, { type FastifyInstance } from "fastify";
 import cors from "@fastify/cors";
-import Helmet from "@fastify/helmet";
 import { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
-import createRoutes from "@/routes";
-import { envLoggerOptions } from "@/config";
+import Helmet from "@fastify/helmet";
+import { envLoggerOptions } from "./config";
 import registerHooks from "./hooks";
+import createRoutes from "./routes";
 
 /**
  * Builds and configures the server instance.

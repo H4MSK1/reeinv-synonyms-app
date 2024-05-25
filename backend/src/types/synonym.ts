@@ -1,5 +1,5 @@
-import { SynonymSchema } from "@/schema";
 import { Static } from "@sinclair/typebox";
+import { SynonymSchema } from "@/schema";
 import { Optional } from ".";
 
 export type Synonyms = Record<string, string[]>;

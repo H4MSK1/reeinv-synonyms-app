@@ -1,8 +1,8 @@
-import dotenv from "dotenv";
-import { FastifyLoggerOptions } from "fastify";
+import { config as configEnvVariables } from "dotenv";
+import { type FastifyLoggerOptions } from "fastify";
 import { PinoLoggerOptions } from "fastify/types/logger";
 
-dotenv.config();
+configEnvVariables();
 
 export const envLoggerOptions: Record<
   string,

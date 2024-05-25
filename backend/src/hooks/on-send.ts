@@ -1,4 +1,4 @@
-import { FastifyInstance } from "fastify";
+import { type FastifyInstance } from "fastify";
 
 export default function onSend(server: FastifyInstance) {
   server.addHook("onSend", async (_request, _reply, payload) =>
