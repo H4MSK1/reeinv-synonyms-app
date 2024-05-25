@@ -19,19 +19,7 @@
       "dbaeumer.vscode-eslint",
       "esbenp.prettier-vscode",
       "yzhang.markdown-all-in-one",
-      "editorconfig.editorconfig",
-      "mike-co.import-sorter",
-      "bradlc.vscode-tailwindcss",
-      "heybourn.headwind",
-      "csstools.postcss"
+      "editorconfig.editorconfig"
     ]
-  },
-  "settings": {
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "explicit"
-    },
-    "typescript.preferences.importModuleSpecifier": "non-relative",
-    "javascript.preferences.importModuleSpecifier": "non-relative"
   }
 }
