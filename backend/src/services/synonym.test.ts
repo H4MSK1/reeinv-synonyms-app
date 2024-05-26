@@ -18,13 +18,16 @@ describe("SynonymService", () => {
     // Then
     expect(synonymService.getSynonymsByWord("stubborn")).toBeUndefined();
     expect(synonymService.getSynonymsByWord("happy")).toEqual({
-      happy: ["joyful", "glad"],
+      word: "happy",
+      synonyms: ["joyful", "glad"],
     });
     expect(synonymService.getSynonymsByWord("joyful")).toEqual({
-      joyful: ["happy", "glad"],
+      word: "joyful",
+      synonyms: ["happy", "glad"],
     });
     expect(synonymService.getSynonymsByWord("glad")).toEqual({
-      glad: ["happy", "joyful"],
+      word: "glad",
+      synonyms: ["happy", "joyful"],
     });
   });
 
@@ -34,14 +37,14 @@ describe("SynonymService", () => {
     // When
     synonymService.addSynonyms(payload);
     // Then
-    expect(synonymService.getSynonyms({ search: "joy" })).toEqual({
-      joyful: ["happy", "glad"],
-    });
-    expect(synonymService.getSynonyms({ search: "stubborn" })).toBeUndefined();
-  });
-
-  it("should update the transitive synonyms", () => {
-    // @todo, write this..
-    expect(1).toBe(1);
+    expect(synonymService.getSynonyms({ search: "joy" })).toEqual(
+      expect.arrayContaining([
+        {
+          word: "joyful",
+          synonyms: ["happy", "glad"],
+        },
+      ])
+    );
+    expect(synonymService.getSynonyms({ search: "stubborn" })).toEqual([]);
   });
 });
