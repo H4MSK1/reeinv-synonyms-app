@@ -18,6 +18,12 @@ module.exports = {
       { allowConstantExport: true },
     ],
     "react/prop-types": "off",
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        checksVoidReturn: false,
+      },
+    ],
   },
   overrides: [
     {
