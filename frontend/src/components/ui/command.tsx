@@ -5,7 +5,6 @@ import { Command as CommandPrimitive } from "cmdk";
 
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Loader2 } from "lucide-react";
 
 const Command = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive>,
@@ -36,14 +35,10 @@ const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
   );
 };
 
-interface CommandInputProps
-  extends React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input> {
-  isLoading?: boolean;
-}
 const CommandInput = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Input>,
-  CommandInputProps
->(({ className, isLoading, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
+>(({ className, ...props }, ref) => (
   // eslint-disable-next-line react/no-unknown-property
   <div className="flex items-center px-3 border-b" cmdk-input-wrapper="">
     <MagnifyingGlassIcon className="w-4 h-4 mr-2 opacity-50 md:h-6 md:w-6 shrink-0" />
@@ -55,9 +50,6 @@ const CommandInput = React.forwardRef<
       )}
       {...props}
     />
-    {isLoading && (
-      <Loader2 className="w-4 h-4 ml-2 opacity-50 md:h-6 md:w-6 shrink-0 animate-spin" />
-    )}
   </div>
 ));
 
