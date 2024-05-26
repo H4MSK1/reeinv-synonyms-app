@@ -1,7 +1,6 @@
 import { type FastifyInstance } from "fastify";
 import { AddressInfo } from "net";
 import { runServer } from "./server";
-import { JSONResponse } from "./types";
 
 describe("server integration tests", () => {
   let server: FastifyInstance, baseUrl: string;
@@ -54,7 +53,7 @@ describe("server integration tests", () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ word, synonyms }),
       });
-      const { data } = (await response.json()) as JSONResponse;
+      const data = await response.json();
       // Then
       expect(response.status).toEqual(201);
       expect(data).toEqual({ word: word, synonyms });
@@ -65,7 +64,7 @@ describe("server integration tests", () => {
     it("should return status code 200 and an empty array", async () => {
       // Given
       const response = await fetch(`${baseUrl}/api/synonyms`);
-      const { data } = (await response.json()) as JSONResponse;
+      const data = await response.json();
       // Then
       expect(response.status).toEqual(200);
       expect(data).toEqual([]);
@@ -76,7 +75,7 @@ describe("server integration tests", () => {
       await createSynonyms();
       // When
       const response = await fetch(`${baseUrl}/api/synonyms`);
-      const { data } = (await response.json()) as JSONResponse;
+      const data = await response.json();
       // Then
       expect(response.status).toEqual(200);
       expect(data).toEqual(transitiveSynonyms);
@@ -87,7 +86,7 @@ describe("server integration tests", () => {
       await createSynonyms();
       // When
       const response = await fetch(`${baseUrl}/api/synonyms/${word}`);
-      const { data } = (await response.json()) as JSONResponse;
+      const data = await response.json();
       // Then
       expect(response.status).toEqual(200);
       expect(data).toEqual({ word, synonyms });
