@@ -1,6 +1,6 @@
 # reeinv-synonyms-app
 
-![CI](https://github.com/H4MSK1/reeinv-synonyms-app/actions/workflows/ci/badge.svg)
+![CI](https://github.com/H4MSK1/reeinv-synonyms-app/actions/workflows/ci.yml/badge.svg)
 
 Full stack application (Node.js, React.js) to temporarily store and extract transitive synonyms
 
