@@ -1,17 +1,13 @@
 steps:
   # Build the Docker image in which we'll build the static files
   - name: "gcr.io/cloud-builders/docker"
+    entrypoint: /bin/sh
     args:
-      [
-        "build",
-        "-t",
-        "gcr.io/$PROJECT_ID/frontend:latest",
-        "--build-arg",
-        "VITE_APP_BACKEND_URL=$_BACKEND_URL",
-        "-f",
-        "Dockerfile.prod",
-        ".",
-      ]
+      - -c
+      - |
+        docker build -t gcr.io/$PROJECT_ID/frontend:latest \
+        --build-arg VITE_APP_BACKEND_URL=${_BACKEND_URL} \
+         -f Dockerfile.prod .
   # Extract the static files from the Docker image
   - name: "gcr.io/cloud-builders/docker"
     args:

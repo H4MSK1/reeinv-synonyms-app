@@ -1,0 +1,33 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    entrypoint: /bin/sh
+    args:
+      - -c
+      - |
+        docker build -t ${_REGISTRY_URI}/${_IMAGE}:${SHORT_SHA} \
+        -f Dockerfile.prod .
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      - push
+      - ${_REGISTRY_URI}/${_IMAGE}:${SHORT_SHA}
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: gcloud
+    args:
+      - "run"
+      - "services"
+      - "update"
+      - "${_SERVICE}"
+      - "--image"
+      - "${_REGISTRY_URI}/${_IMAGE}:${SHORT_SHA}"
+      - "--region"
+      - "${_REGION}"
+      - "--update-env-vars"
+      - "ALLOWED_ORIGIN=${_ALLOWED_ORIGIN}"
+
+# @docs: https://cloud.google.com/build/docs/configuring-builds/substitute-variable-values
+substitutions:
+  _REGISTRY_URI: MISSING_REGISTRY_URI
+  _REGION: MISSING_REGION
+  _SERVICE: MISSING_SERVICE
+  _IMAGE: MISSING_IMAGE
+  _ALLOWED_ORIGIN: "http://localhost/api"
