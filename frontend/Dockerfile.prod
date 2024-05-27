@@ -1,0 +1,24 @@
+# Base stage
+FROM node:20-alpine AS base
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
+RUN corepack use pnpm@latest
+COPY . /opt/frontend
+WORKDIR /opt/frontend
+
+# Dependencies stage
+FROM base AS deps
+RUN pnpm install --frozen-lockfile
+
+# Build stage
+FROM base AS builder
+COPY --from=deps /opt/frontend/node_modules /opt/frontend/node_modules
+ARG VITE_APP_BACKEND_URL
+ENV VITE_APP_BACKEND_URL=$VITE_APP_BACKEND_URL
+ENV VITE_APP_NAME="Synonymizer"
+RUN pnpm build
+
+# Export static files stage
+FROM base AS export
+COPY --from=builder /opt/frontend/dist /exported_files

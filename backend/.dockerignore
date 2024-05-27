@@ -1,0 +1,21 @@
+# config files
+.husky/
+.editorconfig
+.eslintrc
+.git
+.gitignore
+.prettierignore
+.prettierrc
+.releaserc
+Dockerfile
+docker-compose.yml
+jest.config.js
+
+# documentation
+*.md
+
+# build files
+node_modules/
+build/
+dist/
+coverage/

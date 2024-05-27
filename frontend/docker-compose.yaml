@@ -1,0 +1,11 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/opt/frontend
+      - /opt/frontend/node_modules
+      - ~/.config/gcloud/:/root/.config/gcloud
+    ports:
+      - 5173:5173
