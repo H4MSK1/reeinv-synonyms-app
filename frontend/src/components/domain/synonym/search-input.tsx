@@ -13,11 +13,10 @@ import { PopoverTrigger } from "@radix-ui/react-popover";
 import { useSearchSynonyms } from "@/api/synonym/search-synonyms";
 
 type Props = {
-  value?: string;
   onSelectSynonym?: (synonym: string) => void;
 };
 
-export default function SynonymSearchInput({ value, onSelectSynonym }: Props) {
+export default function SynonymSearchInput({ onSelectSynonym }: Props) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState<string>("");
 
@@ -30,16 +29,10 @@ export default function SynonymSearchInput({ value, onSelectSynonym }: Props) {
   }
 
   function handleSelect(synonym: string) {
-    setSearchTerm(synonym);
+    setSearchTerm("");
     setIsOpen(false);
     onSelectSynonym?.(synonym);
   }
-
-  useEffect(() => {
-    if (value?.length) {
-      setSearchTerm(value);
-    }
-  }, [value]);
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
