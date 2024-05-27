@@ -11,9 +11,7 @@ type Props = {
 
 export default function AppLayout({ children, title }: Props) {
   useEffect(() => {
-    if (title) {
-      document.title = `${title} — ${VITE_APP_NAME}`;
-    }
+    document.title = title ? `${title} — ${VITE_APP_NAME}` : VITE_APP_NAME;
   }, [title]);
 
   return (
