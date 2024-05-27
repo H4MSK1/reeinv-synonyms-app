@@ -18,12 +18,13 @@ steps:
         "gcr.io/$PROJECT_ID/frontend:latest",
       ]
   - name: "gcr.io/cloud-builders/docker"
-    args: ["cp", "temp-container:/exported_files", "./dist"]
+    args: ["cp", "temp-container:/exported_files", "./frontend/dist"]
   - name: "gcr.io/cloud-builders/docker"
     args: ["rm", "temp-container"]
   # Install Firebase CLI using NPM and deploy the static files to Firebase Hosting
   - name: "node:latest"
     entrypoint: "bash"
+    dir: "frontend"
     args:
       - "-c"
       - |
