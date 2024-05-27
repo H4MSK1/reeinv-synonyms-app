@@ -6,7 +6,7 @@ Ensure you have installed all the tools described in the parent [README](../../R
 
 ## Provisioning
 
-This command provisions the infrastructure for the set environment.
+These steps provision the infrastructure for the set environment.
 
 1. Authenticate
    Create default credentials. These are used by terraform for authentication:
@@ -17,3 +17,4 @@ This command provisions the infrastructure for the set environment.
    ```sh
    ./provision.sh <env>
    ```
+   Replace `<env>` with `prod` for instance.

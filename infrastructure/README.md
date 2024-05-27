@@ -9,4 +9,4 @@ Contains Terraform code for provisioning Google Cloud resources.
 
 ## Next steps
 
-Further steps are described in the project's [README](/projects/reeinv-synonymizer/README.md).
+Further steps are described in the project's [README](./projects/reeinv-synonymizer/README.md).
