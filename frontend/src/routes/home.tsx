@@ -1,28 +1,40 @@
-import SynonymCardSet from "@/components/domain/synonym/card-set";
-import SynonymSearchInput from "@/components/domain/synonym/search-input";
+import { useNavigate, useParams } from "react-router-dom";
 import AppLayout from "@/components/layouts/app-layout";
+import SynonymSearchInput from "@/components/domain/synonym/search-input";
+import SynonymCard from "@/components/domain/synonym/card";
+import { useSynonym } from "@/api/synonym/get-synonym";
 
 export default function HomeRoute() {
-  return (
-    <AppLayout>
-      <section className="flex flex-col gap-12">
-        <SynonymCardSet
-          title="The latest synonyms added"
-          synonyms={["joyful", "happy", "unhappy", "sad", "crazy", "creative"]}
-          isCarousel
-        />
+  const { word } = useParams();
+  const navigate = useNavigate();
 
-        <div className="flex flex-col gap-4">
-          <h1 className="flex items-center justify-center gap-1 text-xl font-semibold tracking-tight">
-            Discover more
+  const synonymQuery = useSynonym(word);
+
+  function handleSelectSynonym(synonym: string) {
+    navigate(`/${synonym}`);
+  }
+
+  return (
+    <AppLayout title={word}>
+      <section className="flex flex-col gap-12">
+        <div className="flex flex-col w-full max-w-3xl gap-2 mx-auto">
+          <h1 className="text-2xl font-medium tracking-tight text-center uppercase">
+            Discover <span className="text-primary">synonyms</span>
           </h1>
 
-          <div className="relative flex w-full max-w-3xl mx-auto">
-            <SynonymSearchInput />
-          </div>
-
-          <SynonymCardSet synonyms={[]} className="flex-row" />
+          <SynonymSearchInput
+            onSelectSynonym={handleSelectSynonym}
+            value={word}
+          />
         </div>
+
+        {word && (
+          <SynonymCard
+            word={word}
+            synonyms={synonymQuery.data?.synonyms}
+            isLoading={synonymQuery.isLoading}
+          />
+        )}
       </section>
     </AppLayout>
   );
