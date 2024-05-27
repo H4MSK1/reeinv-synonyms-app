@@ -1,16 +1,19 @@
+import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Link } from "react-router-dom";
 import { Skeleton } from "@/components/ui/skeleton";
+import SynonymTextToSpeech from "./text-to-speech";
+import { Optional } from "@/types";
 
 type Props = {
-  synonym: string;
-  relatedSynonyms: string[];
+  word: string;
+  synonyms: Optional<string[]>;
+  isLoading?: boolean;
 };
 
 export function SynonymCardPlaceholder() {
   return (
-    <Card>
+    <Card data-testid="synonym-card-placeholder">
       <CardHeader className="bg-muted/50">
         <CardTitle>
           <Skeleton className="h-4 w-[250px]" />
@@ -25,25 +28,34 @@ export function SynonymCardPlaceholder() {
   );
 }
 
-export default function SynonymCard({ synonym, relatedSynonyms }: Props) {
+export default function SynonymCard({ word, synonyms, isLoading }: Props) {
+  if (isLoading) {
+    return <SynonymCardPlaceholder />;
+  }
+
   return (
     <Card>
       <CardHeader className="bg-muted/50">
-        <CardTitle>
-          Synonyms for{" "}
-          <i className="text-primary" data-testid="synonym">
-            {synonym}
-          </i>
+        <CardTitle className="flex items-center justify-between gap-4 text-lg">
+          <span>
+            Synonyms for{" "}
+            <i className="text-primary" data-testid="synonym">
+              {word}
+            </i>
+          </span>
+
+          <SynonymTextToSpeech word={word} />
         </CardTitle>
       </CardHeader>
       <CardContent className="flex flex-row flex-wrap gap-2 overflow-x-auto">
-        {relatedSynonyms.map((relatedSynonym, index) => (
+        {synonyms?.map((synonym, index) => (
           <Badge variant="secondary" key={index}>
             <Link
-              to="/"
+              to={`/${synonym}`}
               className="text-base transition-colors text-muted-foreground hover:text-foreground"
+              data-testid="synonym-link"
             >
-              {relatedSynonym}
+              {synonym}
             </Link>
           </Badge>
         ))}

@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import { BookA, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { VITE_APP_NAME } from "@/constants";
 
 export default function Navbar() {
   const linkStyling =
@@ -9,24 +10,20 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="flex-col hidden gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
+      <nav className="flex-col hidden gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6 grow">
         <NavLink
           to="/"
           className="flex items-center gap-2 text-lg font-semibold border-r md:text-base"
         >
           <BookA className="w-6 h-6" />
           <span className="pr-4 tracking-wider uppercase lg:pr-6">
-            {import.meta.env.VITE_APP_NAME}
+            {VITE_APP_NAME}
           </span>
-          <span className="sr-only">{import.meta.env.VITE_APP_NAME}</span>
+          <span className="sr-only">{VITE_APP_NAME}</span>
         </NavLink>
 
         <NavLink to="/" className={linkStyling}>
-          Home
-        </NavLink>
-
-        <NavLink to="/browse" className={linkStyling}>
-          Browse
+          Synonyms
         </NavLink>
       </nav>
 
@@ -45,17 +42,11 @@ export default function Navbar() {
               className="flex items-center gap-2 text-lg font-semibold"
             >
               <BookA className="w-6 h-6" />
-              <span className="tracking-wider uppercase">
-                {import.meta.env.VITE_APP_NAME}
-              </span>
-              <span className="sr-only">{import.meta.env.VITE_APP_NAME}</span>
+              <span className="tracking-wider uppercase">{VITE_APP_NAME}</span>
+              <span className="sr-only">{VITE_APP_NAME}</span>
             </NavLink>
 
             <NavLink to="/" className={linkStyling}>
-              Home
-            </NavLink>
-
-            <NavLink to="/synonyms" className={linkStyling}>
               Synonyms
             </NavLink>
           </nav>

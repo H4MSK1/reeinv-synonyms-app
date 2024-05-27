@@ -4,8 +4,8 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ./:/app
-      - /app/node_modules
+      - ./:/opt/backend
+      - /opt/backend/node_modules
       - ~/.config/gcloud/:/root/.config/gcloud
     ports:
       - 3000:3000

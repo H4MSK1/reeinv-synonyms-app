@@ -2,7 +2,6 @@ import {
   SynonymMap,
   SynonymServiceInterface,
   Synonym,
-  Synonyms,
   SynonymsFilter,
   Optional,
 } from "@/types";
@@ -26,32 +25,34 @@ export default class SynonymService implements SynonymServiceInterface {
   /**
    * Gets all synonyms based on filter.
    * @param {SynonymsFilter} filter The search filter.
-   * @returns {Optional<Synonyms>}
+   * @returns {Synonym[]}
    */
-  public getSynonyms(filter?: SynonymsFilter): Optional<Synonyms> {
+  public getSynonyms(filter?: SynonymsFilter): Synonym[] {
     const { search } = filter ?? {};
-    const wordSynonyms: Synonyms = {};
+    const data: Synonym[] = [];
 
     for (const [word, synonyms] of this.#synonymMap.entries()) {
       if (
         isEmpty(search) ||
         word.toLocaleLowerCase().includes(search.toLocaleLowerCase())
       ) {
-        wordSynonyms[word] = Array.from(synonyms);
+        data.push({ word, synonyms: Array.from(synonyms) });
       }
     }
 
-    return isEmpty(wordSynonyms) ? undefined : wordSynonyms;
+    return data;
   }
 
-  public getSynonymsByWord(word: string): Optional<Synonyms> {
+  public getSynonymsByWord(word: string): Optional<Synonym> {
+    if (!this.#synonymMap.has(word)) {
+      return undefined;
+    }
     const synonyms = Array.from(this.#synonymMap.get(word) ?? []);
-    return isEmpty(synonyms) ? undefined : { [word]: synonyms };
+    return { word, synonyms };
   }
 
   public clearSynonyms(): void {
     this.#synonymMap.clear();
-    // @todo: maybe recursively delete transitive synonyms matching the word? Idk yet.
   }
 
   private addSynonymBidirectionally(word: string, synonym: string): void {

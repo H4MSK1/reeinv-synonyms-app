@@ -1,9 +1,9 @@
 import { describe, it } from "vitest";
 import { render } from "@/lib/test-utils";
-import Error404Route from "./error-404";
+import HomeRoute from "./home";
 
-describe("Error404Route", () => {
+describe("HomeRoute", () => {
   it("should render properly", () => {
-    render(<Error404Route />);
+    render(<HomeRoute />);
   });
 });

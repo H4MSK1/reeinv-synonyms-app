@@ -1,7 +1,6 @@
 import { type FastifyInstance } from "fastify";
 import { AddressInfo } from "net";
 import { runServer } from "./server";
-import { JSONResponse } from "./types";
 
 describe("server integration tests", () => {
   let server: FastifyInstance, baseUrl: string;
@@ -29,11 +28,14 @@ describe("server integration tests", () => {
     // prepare test data
     const word = "happy";
     const synonyms = ["joyful", "glad"];
-    const transitiveSynonyms = {
-      [word]: synonyms,
-      joyful: [word, synonyms[1]],
-      glad: [word, synonyms[0]],
-    };
+    const transitiveSynonyms = [
+      {
+        word: word,
+        synonyms,
+      },
+      { word: "joyful", synonyms: [word, synonyms[1]] },
+      { word: "glad", synonyms: [word, synonyms[0]] },
+    ];
 
     async function clearSynonyms() {
       // When
@@ -51,21 +53,21 @@ describe("server integration tests", () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ word, synonyms }),
       });
-      const { data } = (await response.json()) as JSONResponse;
+      const data = await response.json();
       // Then
       expect(response.status).toEqual(201);
-      expect(data).toEqual({ [word]: synonyms });
+      expect(data).toEqual({ word: word, synonyms });
     }
 
     beforeEach(clearSynonyms);
 
-    it("should return status code 200 and null", async () => {
+    it("should return status code 200 and an empty array", async () => {
       // Given
       const response = await fetch(`${baseUrl}/api/synonyms`);
-      const { data } = (await response.json()) as JSONResponse;
+      const data = await response.json();
       // Then
       expect(response.status).toEqual(200);
-      expect(data).toBeNull();
+      expect(data).toEqual([]);
     });
 
     it("should return status code 200 and all transitive synonyms", async () => {
@@ -73,7 +75,7 @@ describe("server integration tests", () => {
       await createSynonyms();
       // When
       const response = await fetch(`${baseUrl}/api/synonyms`);
-      const { data } = (await response.json()) as JSONResponse;
+      const data = await response.json();
       // Then
       expect(response.status).toEqual(200);
       expect(data).toEqual(transitiveSynonyms);
@@ -84,10 +86,10 @@ describe("server integration tests", () => {
       await createSynonyms();
       // When
       const response = await fetch(`${baseUrl}/api/synonyms/${word}`);
-      const { data } = (await response.json()) as JSONResponse;
+      const data = await response.json();
       // Then
       expect(response.status).toEqual(200);
-      expect(data).toEqual({ [word]: synonyms });
+      expect(data).toEqual({ word, synonyms });
     });
   });
 });
