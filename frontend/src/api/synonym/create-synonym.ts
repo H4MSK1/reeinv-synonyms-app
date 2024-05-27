@@ -3,7 +3,7 @@ import { apiClient } from "@/lib/api-client";
 import { Synonym } from "@/types";
 
 async function createSynonym(values: Synonym): Promise<Synonym> {
-  const { data } = await apiClient.post<Synonym>("/synonyms", values);
+  const { data } = await apiClient.post<Synonym>("/api/synonyms", values);
   return data;
 }
 

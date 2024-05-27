@@ -3,7 +3,7 @@ import { Optional, Synonym } from "@/types";
 import { apiClient } from "@/lib/api-client";
 
 async function fetchSynonym(word: Optional<string>): Promise<Synonym> {
-  const { data } = await apiClient.get<Synonym>(`/synonyms/${word}`);
+  const { data } = await apiClient.get<Synonym>(`/api/synonyms/${word}`);
   return data;
 }
 
