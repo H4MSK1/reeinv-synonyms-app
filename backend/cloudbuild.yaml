@@ -5,7 +5,7 @@ steps:
       - -c
       - |
         docker build -t ${_REGISTRY_URI}/${_IMAGE}:${SHORT_SHA} \
-        -f Dockerfile.prod .
+        -f ./backend/Dockerfile.prod ./backend/
   - name: "gcr.io/cloud-builders/docker"
     args:
       - push

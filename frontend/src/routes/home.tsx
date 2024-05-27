@@ -22,10 +22,7 @@ export default function HomeRoute() {
             Discover <span className="text-primary">synonyms</span>
           </h1>
 
-          <SynonymSearchInput
-            onSelectSynonym={handleSelectSynonym}
-            value={word}
-          />
+          <SynonymSearchInput onSelectSynonym={handleSelectSynonym} />
         </div>
 
         {word && (

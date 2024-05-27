@@ -4,7 +4,7 @@ import { apiClient } from "@/lib/api-client";
 
 async function fetchSynonyms(searchTerm: string): Promise<Synonym[]> {
   const { data } = await apiClient.get<Synonym[]>(
-    `/synonyms?search=${searchTerm}`
+    `/api/synonyms?search=${searchTerm}`
   );
   return data;
 }

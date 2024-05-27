@@ -33,16 +33,13 @@ jobs:
     defaults:
       run:
         working-directory: backend
-    strategy:
-      matrix:
-        node-version: [20.x]
     steps:
       - uses: actions/checkout@v4
       - name: Install pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 9
-      - name: Use Node.js ${{ matrix.node-version }}
+          package_json_file: './backend/package.json'
+      - name: Use Node.js from .nvmrc file
         uses: actions/setup-node@v4
         with:
           node-version-file: './backend/.nvmrc'
@@ -67,16 +64,13 @@ jobs:
     defaults:
       run:
         working-directory: frontend
-    strategy:
-      matrix:
-        node-version: [20.x]
     steps:
       - uses: actions/checkout@v4
       - name: Install pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
-          version: 9
-      - name: Use Node.js ${{ matrix.node-version }}
+          package_json_file: './backend/package.json'
+      - name: Use Node.js from .nvmrc file
         uses: actions/setup-node@v4
         with:
           node-version-file: './frontend/.nvmrc'
