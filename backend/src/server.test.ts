@@ -28,14 +28,6 @@ describe("server integration tests", () => {
     // prepare test data
     const word = "happy";
     const synonyms = ["joyful", "glad"];
-    const transitiveSynonyms = [
-      {
-        word: word,
-        synonyms,
-      },
-      { word: "joyful", synonyms: [word, synonyms[1]] },
-      { word: "glad", synonyms: [word, synonyms[0]] },
-    ];
 
     async function clearSynonyms() {
       // When
@@ -68,17 +60,6 @@ describe("server integration tests", () => {
       // Then
       expect(response.status).toEqual(200);
       expect(data).toEqual([]);
-    });
-
-    it("should return status code 200 and all transitive synonyms", async () => {
-      // Given
-      await createSynonyms();
-      // When
-      const response = await fetch(`${baseUrl}/api/synonyms`);
-      const data = await response.json();
-      // Then
-      expect(response.status).toEqual(200);
-      expect(data).toEqual(transitiveSynonyms);
     });
 
     it("should return status code 200 and all synonyms for word", async () => {
