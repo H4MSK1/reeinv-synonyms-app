@@ -21,12 +21,6 @@ The backend is built using Fastify and TypeScript. It exposes the API layer for 
 
 ## API reference
 
-#### Get all synonyms
-
-```http
-  GET /api/synonyms
-```
-
 #### Get all synonyms by search filter
 
 ```http

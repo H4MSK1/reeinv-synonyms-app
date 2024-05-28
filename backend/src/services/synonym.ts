@@ -27,15 +27,14 @@ export default class SynonymService implements SynonymServiceInterface {
    * @param {SynonymsFilter} filter The search filter.
    * @returns {Synonym[]}
    */
-  public getSynonyms(filter?: SynonymsFilter): Synonym[] {
-    const { search } = filter ?? {};
-    const data: Synonym[] = [];
+  public getSynonyms({ search }: SynonymsFilter): Synonym[] {
+    if (isEmpty(search)) {
+      return [];
+    }
 
+    const data: Synonym[] = [];
     for (const [word, synonyms] of this.#synonymMap.entries()) {
-      if (
-        isEmpty(search) ||
-        word.toLocaleLowerCase().includes(search.toLocaleLowerCase())
-      ) {
+      if (word.toLocaleLowerCase().includes(search.toLocaleLowerCase())) {
         data.push({ word, synonyms: Array.from(synonyms) });
       }
     }

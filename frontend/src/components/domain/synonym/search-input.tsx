@@ -11,6 +11,7 @@ import {
 import { Popover, PopoverContent } from "@/components/ui/popover";
 import { PopoverTrigger } from "@radix-ui/react-popover";
 import { useSearchSynonyms } from "@/api/synonym/search-synonyms";
+import { CommandLoading } from "cmdk";
 
 type Props = {
   onSelectSynonym?: (synonym: string) => void;
@@ -52,27 +53,39 @@ export default function SynonymSearchInput({ onSelectSynonym }: Props) {
             className="w-[--radix-popover-trigger-width] max-h-[--radix-popover-content-available-height] p-0"
             onOpenAutoFocus={(e) => e.preventDefault()}
             side="bottom"
+            asChild
           >
-            <CommandEmpty>
-              {synonymSearchQuery.isLoading
-                ? "Loading..."
-                : "No results found."}
-            </CommandEmpty>
+            <CommandList>
+              {!synonymSearchQuery.isLoading &&
+                !synonymSearchQuery.data?.length && (
+                  <CommandEmpty>No results found.</CommandEmpty>
+                )}
 
-            <CommandGroup
-              heading={synonymSearchQuery.data?.length && "Suggestions"}
-            >
-              {synonymSearchQuery.data?.map(({ word }) => (
-                <CommandItem
-                  key={word}
-                  value={word}
-                  onSelect={handleSelect}
-                  className="cursor-pointer"
+              {synonymSearchQuery.isLoading && (
+                <CommandLoading className="py-6 text-sm text-center">
+                  Loading...
+                </CommandLoading>
+              )}
+
+              {synonymSearchQuery.data?.map(({ word, synonyms }) => (
+                <CommandGroup
+                  key={`${word}-${synonyms.length}`}
+                  heading={word}
+                  forceMount
                 >
-                  {word}
-                </CommandItem>
+                  {synonyms.map((syn) => (
+                    <CommandItem
+                      key={`${word}-${syn}`}
+                      value={`${word}-${syn}`}
+                      onSelect={() => handleSelect(syn)}
+                      className="cursor-pointer"
+                    >
+                      {syn}
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
               ))}
-            </CommandGroup>
+            </CommandList>
           </PopoverContent>
         </CommandList>
       </Command>
